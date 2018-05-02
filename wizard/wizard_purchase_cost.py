@@ -28,6 +28,8 @@ class wizard_analytic_price_template_test(orm.TransientModel):
         "sum_supp": fields.char(string="Sum of supplier", digits=(4, 2)),
         "sum_order": fields.char(string="Sum of orders", digits=(4, 2)),
         "total_order": fields.text(string="Total of orders by supplier", digits=(4, 2)),
+        "git_fiels": fields.text(string="Total of orders by supplier", digits=(4, 2)),
+
 
         #"resume": fields.float(string="resume", digits=(4, 2), compute="resumeF"),
     }
