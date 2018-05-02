@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<openerp>
+    <data>
+
+        <report
+            string="Cout d'achat"
+            id="action_report_popup_cout_achat_iiii"
+            model="product.template"
+            report_type="qweb-pdf"
+            name="popup_purchase_cost.report_stock_state2"
+            file="popup_purchase_cost.report_stock_state2"
+        />
+        <!--name="Report Etat du Stock" popup_stock_management.report_stock_state-->
+
+        <template id="report_stock_state2">
+            <t t-call="report.external_layout">
+                <div class="page">
+                    <div class="oe_structure"/>
+                    <div>
+                        <h2>Report cout d'achat</h2>
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th><strong>Article</strong></th>
+                                    <th><strong>Prix</strong></th>
+                                    <th><strong>Moyenne pondérée</strong></th>
+                                    <th><strong>Comparaison</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="docs" t-as="o">
+                                    <td><span t-field="o.name"/></td>
+                                    <td><span t-field="o.standard_price"/></td>
+                                    <td><span t-field="o.average_weight"/></td>
+                                    <td><span t-esc="o.compare_func()"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </t>
+        </template>
+    </data>
+</openerp>

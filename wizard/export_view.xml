@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<openerp>
+	<data>
+
+        <!-- View after menu action -->
+        <record id="purchase_wizard_analysis_form_achat" model="ir.ui.view">
+            <field name="name">purchase_wizard_analysis_form_achat</field>
+            <field name="model">purchase.report.wizard_analysis_achat</field>
+            <field name="arch" type="xml">
+                <form string="Purchase Analysis Wizard">
+                    <group>
+                        <field invisible="1" name="state"/>
+                        <group>
+                            <field name="google_url"
+                            widget="url" readonly="1" states="get"/>
+                            <field name="start_date" string="Date de début"  />
+                            <field name="end_date" string="Date de fin"  />
+                        </group>
+                        <notebook colspan="4"  name="filters_note">
+                            <page string="Filters">
+                                <separator/>
+                                <h2>
+							        <label for="product_ids" string="Sélection des Articles"/>
+						        </h2>
+						        <div>
+                                    <field name="product_ids" domain="[('type', '=', 'product'),('purchase_ok', '=', True)]"
+                                    options="{'no_create': True}">
+                                        <tree string="Products">
+                                            <field name="name"/>
+                                        </tree>
+                                    </field>
+                                </div>
+                                <separator/>
+                                <h2>
+							        <label for="category_ids" string="Sélection des Categories"/>
+						        </h2>
+						        <div>
+                                    <!--widget="many2many_tags" -->
+                                    <field name="category_ids" options="{'no_create': True}">
+                                        <tree editable="bottom">
+                                            <field name="name"/>
+                                        </tree>
+                                    </field>
+                                </div>
+                                <separator/>
+                            </page>
+                        </notebook>
+                    </group>
+                    <footer >
+                        <button name="create_report_cout_achat" type="object"
+                                string="Export Cout Achat" class="oe_highlight" invisible="0"><span class="glyphicon glyphicon-open"></span>
+						</button>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                        <p class="oe_grey" >
+                                Colonnes exportés :
+                                - Produit, Unité, Qty Maison Std, Stock Mini, Fournisseur, Délai
+                                Nom du Produit chez fournisseur, Code du produit chez fournisseur,
+                                Total IN année, Total OUT année
+                            </p>
+                            <p class="oe_grey" >
+                                Colonnes exportés :
+                                - Fournisseur, Commande, Date de Commande, Date de Récéption, Article;
+                                Qty Unité, Unité, Qty Unité Interne, Unité Interne, Prix Un., Prix total HT
+                            </p>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_purchase_wizard_analysis_achat">
+            <field name="name">Purchase Analysis Wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.report.wizard_analysis_achat</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="purchase_wizard_analysis_form_achat"/>
+            <field name="target">new</field>
+        </record>
+
+
+        <!--Menu dans autres options-->
+
+
+        <menuitem id='prepare_purchase_wizard_analysis_wizard_menu_achat'
+            action='action_purchase_wizard_analysis_achat'
+            parent="purchase.menu_procurement_management_product"
+            sequence="100"
+            name=" Export cout d'Achat"/>
+
+	</data>
+</openerp>

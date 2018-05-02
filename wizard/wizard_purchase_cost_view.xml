@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="wiz_cout_achat_form_view" >
+            <field name="name">wiz.cout.achat.form</field>
+            <field name="model">wizard.cout.achat</field>
+            <field name="arch" type="xml">
+                <form string="Gestion des Coûts">
+                    <group name="general" colspan="4">
+						<group name="price_structure" string="Anlyse cout d'achat standard">
+                            <field name="product_id" string="Article" invisible="1" readonly="1"/>
+                            <field name="start_date" string="Date de début"  />
+                            <field name="end_date" string="Date de fin"  />
+                            <field name="average_weight" string="Moyenne pondérée du cout d'achat standard" readonly="1"/>
+                            <field name="average_weight_date" string="Moyenne pondérée du cout d'achat standard par date" readonly="1"/>
+
+                            <div>
+                                   <a href="#demo" data-toggle="collapse">Details</a>
+                                    <div id="demo" class="collapse">
+                                                <h5><field name="sum_supp"   readonly="1" string="nombre de fournisseurs" /></h5>
+                                                <h5><field name="sum_order" string="Nombre de commandes"  readonly="1"/></h5>
+                                                <h5><field name="total_order" string="Quantité commandée par fournisseur"  readonly="1"/></h5>
+                                                <h5><field name="average" string="Moyenne normale par fournissuer" readonly="1" /></h5>
+                                    </div>
+                            </div>
+						</group>
+					</group>
+                    <footer>
+                        <button name="compute_update_purchase_cost" type="object"
+                                string="Mettre à jour la MP" class="oe_highlight" ><span class="glyphicon glyphicon-ok"></span>
+                        </button>
+                        ou
+                        <button name="compute_update_purchase_cost_weighted_average" type="object"
+                                string="Mettre à jour la MP et le CA" class="oe_highlight" ><span class="glyphicon glyphicon-check"></span>
+                        </button>
+                        <!--ou-->
+                        <!--<button name="compute_report" type="object"-->
+                                <!--string="Report" class="oe_highlight" ><span class="glyphicon glyphicon-open"></span>-->
+                        <!--</button>-->
+                        ou
+                        <button string="Annuler"
+                                special="cancel" ><span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_cout_achat">
+            <field name="name">Gestion des Coûts</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard.cout.achat</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="context" eval="{}"/>
+            <field name="target">new</field>
+
+            <!--<field name="view_id" ref="wiz_analytic_price_form_view"/>-->
+        </record>
+
+        <!--<menuitem id="wiz_stock_planning_option_view" name="Wizard Stock Planning"-->
+            <!--parent="stock.menu_stock_sched" action="action_wiz_stock_planning" sequence="92"/>-->
+
+    </data>
+</openerp>

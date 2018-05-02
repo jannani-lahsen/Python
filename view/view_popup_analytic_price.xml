@@ -1,0 +1,33 @@
+?xml version="1.0" encoding="UTF-8" ?>
+<openerp>
+	<data>
+
+		<record model="ir.ui.view" id="popup_purchase_cost_form_product_template">
+			<field name="name">popup_purchase_cost_form_product_template</field>
+			<field name="model">product.template</field>
+			<field name="inherit_id" ref="popup_analytic_price.popup_analytic_price_form_product_template"/>
+			<field name="arch" type="xml">
+				<field name="standard_price"  position="after">
+					 <field name="average_weight"  string="Moyenne pondérée" readonly="1" />
+				</field>
+				<button name="%(popup_analytic_price.action_analytic_price)d"  position="after">
+
+                    <button name="purchase_analyse_cost" type="object"  class="oe_highlight" string="Analyse cout d'achat"><span class="glyphicon glyphicon-stats"></span></button>
+					<!--ou-->
+                        <button name="compute_report" type="object"
+                                string="Report" class="oe_highlight" invisible="1"><span class="glyphicon glyphicon-open"></span>
+                        </button>
+				</button>
+				<!--<xpath expr="//group[@name='general']" position="replace">-->
+					<!--<group name="general" colspan="4">-->
+						<!--<group name="price_structure" string="Structure de Coût">-->
+                            <!--<form>-->
+                                <!--<button name="supplier_reporting" type="object" string="Cout d'achat reporting" />-->
+                            <!--</form>-->
+						<!--</group>-->
+					<!--</group>-->
+				<!--</xpath>-->
+			</field>
+		</record>
+    </data>
+</openerp>
