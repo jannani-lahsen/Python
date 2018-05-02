@@ -23,6 +23,7 @@ class popup_wizard_purchase_export(osv.TransientModel):
                                    ('get', 'get')]),
         "start_date": fields.date(string="Start date"),
         "end_date": fields.date(string="End date"),
+        "last": fields.date(string="End date"),
     }
 
     _defaults = {
